@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Books</mat-card-title>
+    <mat-card-subtitle>All books list</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Search by name</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (keyup)="filterBooks()" />
+    </mat-form-field>
+
+    <mat-table [dataSource]="filteredBooks">
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
+        <mat-cell *matCellDef="let book; index as i">{{ i + 1 }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Book name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let book">{{ book.name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="publicationDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Publication date</mat-header-cell
+        >
+        <mat-cell *matCellDef="let book">{{
+          book.publicationDate | date
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="numberOfPages">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Number of pages</mat-header-cell
+        >
+        <mat-cell *matCellDef="let book">{{ book.numberOfPages }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>
