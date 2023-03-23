@@ -45,4 +45,9 @@ export class BooksListComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.filteredBooks);
     this.dataSource.sort = this.sort;
   }
+
+  onSearch(value: string): void {
+    this.searchTerm = value;
+    this.filterBooks();
+  }
 }
