@@ -8,49 +8,9 @@
       <div style="flex-grow: 1">
         <app-book-search (searchEvent)="onSearch($event)"></app-book-search>
       </div>
-      <mat-form-field appearance="fill">
-        <mat-label>Period</mat-label>
-        <mat-select
-          [(value)]="selectedPeriod"
-          (selectionChange)="onPeriodChange()"
-        >
-          <mat-option *ngFor="let period of periods" [value]="period">{{
-            period
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div *ngIf="selectedPeriod === 'Choose period'">
-        <mat-form-field appearance="fill">
-          <mat-label>Start date</mat-label>
-          <input
-            matInput
-            [matDatepicker]="startDatepicker"
-            [(ngModel)]="startDate"
-            (ngModelChange)="changeStartDate()"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="startDatepicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #startDatepicker></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>End date</mat-label>
-          <input
-            matInput
-            [matDatepicker]="endDatepicker"
-            [(ngModel)]="endDate"
-            (ngModelChange)="changeEndDate()"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="endDatepicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #endDatepicker></mat-datepicker>
-        </mat-form-field>
-      </div>
+      <app-date-filter
+        (rangeChanged)="onDateRangeChanged($event)"
+      ></app-date-filter>
     </div>
 
     <mat-table [dataSource]="dataSource" matSort>

@@ -73,43 +73,9 @@ export class BooksListComponent implements OnInit {
   isSelected(row: any) {
     return row.id === this.selectedRow;
   }
-
-  onPeriodChange() {
-    switch (this.selectedPeriod) {
-      case 'This month':
-        this.endDate = new Date();
-        this.startDate.setFullYear(
-          this.endDate.getFullYear(),
-          this.endDate.getMonth(),
-          1
-        );
-        this.filterBooks();
-        break;
-      case 'This year':
-        this.startDate = new Date();
-        this.startDate.setFullYear(this.startDate.getFullYear(), 0, 1);
-        this.endDate = new Date();
-        this.filterBooks();
-        break;
-      case 'All books':
-        this.startDate = new Date(1800, 0);
-        this.endDate = new Date();
-        this.filterBooks();
-        break;
-    }
-  }
-
-  changeEndDate() {
-    if (this.startDate > this.endDate) {
-      this.endDate = this.startDate;
-    }
-    this.filterBooks();
-  }
-
-  changeStartDate() {
-    if (this.startDate > this.endDate) {
-      this.startDate = this.endDate;
-    }
+  onDateRangeChanged(range: any): void {
+    this.startDate = range.startDate;
+    this.endDate = range.endDate;
     this.filterBooks();
   }
 }

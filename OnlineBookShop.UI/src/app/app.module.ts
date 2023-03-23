@@ -17,9 +17,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { DateFilterComponent } from './components/date-filter/date-filter.component';
 
 @NgModule({
-  declarations: [AppComponent, BooksListComponent, BookSearchComponent],
+  declarations: [AppComponent, BooksListComponent, BookSearchComponent, DateFilterComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
