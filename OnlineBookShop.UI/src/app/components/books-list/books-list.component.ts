@@ -20,6 +20,11 @@ export class BooksListComponent implements OnInit {
   allBooks: Book[] = [];
   dataSource!: MatTableDataSource<Book>;
   searchTerm: string = '';
+  selectedRow: number = -1;
+  periods = ['This month', 'This year', 'Choose period', 'All books'];
+  selectedPeriod: string = this.periods[3];
+  startDate: Date = new Date(1800, 1);
+  endDate: Date = new Date();
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -42,12 +47,69 @@ export class BooksListComponent implements OnInit {
     this.filteredBooks = this.allBooks.filter((book) =>
       book.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+
+    if (this.startDate && this.endDate) {
+      this.filteredBooks = this.filteredBooks.filter((book) => {
+        const publicationDate = new Date(book.publicationDate);
+        return (
+          publicationDate >= this.startDate && publicationDate <= this.endDate
+        );
+      });
+    }
+
     this.dataSource = new MatTableDataSource(this.filteredBooks);
     this.dataSource.sort = this.sort;
   }
 
   onSearch(value: string): void {
     this.searchTerm = value;
+    this.filterBooks();
+  }
+
+  selectRow(row: any) {
+    this.selectedRow = row.id;
+  }
+
+  isSelected(row: any) {
+    return row.id === this.selectedRow;
+  }
+
+  onPeriodChange() {
+    switch (this.selectedPeriod) {
+      case 'This month':
+        this.endDate = new Date();
+        this.startDate.setFullYear(
+          this.endDate.getFullYear(),
+          this.endDate.getMonth(),
+          1
+        );
+        this.filterBooks();
+        break;
+      case 'This year':
+        this.startDate = new Date();
+        this.startDate.setFullYear(this.startDate.getFullYear(), 0, 1);
+        this.endDate = new Date();
+        this.filterBooks();
+        break;
+      case 'All books':
+        this.startDate = new Date(1800, 0);
+        this.endDate = new Date();
+        this.filterBooks();
+        break;
+    }
+  }
+
+  changeEndDate() {
+    if (this.startDate > this.endDate) {
+      this.endDate = this.startDate;
+    }
+    this.filterBooks();
+  }
+
+  changeStartDate() {
+    if (this.startDate > this.endDate) {
+      this.startDate = this.endDate;
+    }
     this.filterBooks();
   }
 }
