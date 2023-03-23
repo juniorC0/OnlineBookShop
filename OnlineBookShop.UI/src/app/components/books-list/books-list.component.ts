@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 
@@ -16,11 +18,12 @@ export class BooksListComponent implements OnInit {
   ];
   filteredBooks: Book[] = [];
   allBooks: Book[] = [];
+  dataSource!: MatTableDataSource<Book>;
   searchTerm: string = '';
 
-  constructor(private bookService: BookService) {
-    this.filteredBooks = this.allBooks;
-  }
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
     this.getBooks();
@@ -30,6 +33,8 @@ export class BooksListComponent implements OnInit {
     this.bookService.getAllBooks().subscribe((books) => {
       this.allBooks = books;
       this.filteredBooks = books;
+      this.dataSource = new MatTableDataSource(books);
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -37,5 +42,7 @@ export class BooksListComponent implements OnInit {
     this.filteredBooks = this.allBooks.filter((book) =>
       book.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+    this.dataSource = new MatTableDataSource(this.filteredBooks);
+    this.dataSource.sort = this.sort;
   }
 }

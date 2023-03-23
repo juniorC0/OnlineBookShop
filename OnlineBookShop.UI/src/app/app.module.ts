@@ -10,6 +10,7 @@ import { BooksListComponent } from './components/books-list/books-list.component
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [AppComponent, BooksListComponent],
@@ -22,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

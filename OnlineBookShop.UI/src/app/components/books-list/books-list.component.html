@@ -9,7 +9,7 @@
       <input matInput [(ngModel)]="searchTerm" (keyup)="filterBooks()" />
     </mat-form-field>
 
-    <mat-table [dataSource]="filteredBooks">
+    <mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="index">
         <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
         <mat-cell *matCellDef="let book; index as i">{{ i + 1 }}</mat-cell>
