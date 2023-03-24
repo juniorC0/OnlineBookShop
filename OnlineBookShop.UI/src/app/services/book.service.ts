@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from '../models/book';
+import { BooksByYear } from '../models/books-by-year';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,9 @@ export class BookService {
     } else {
       throw new Error('Book id is null');
     }
+  }
+
+  getBooksByYear() {
+    return this.http.get<BooksByYear[]>('api/Book/books-per-year');
   }
 }

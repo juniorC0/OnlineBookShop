@@ -13,5 +13,7 @@ namespace OnlineBookShop.Appilcation.Common.Interfaces
         Task DeleteBookAsync(int id);
 
         Task UpdateBookAsync(int id, BookDto bookDto);
+
+        Task<IEnumerable<BookPerYearDto>> GetBooksPerYearAsync();
     }
 }

@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AddBookDialogComponent } from './components/add-book-dialog/add-book-dialog.component';
 import { EditBookDialogComponent } from './components/edit-book-dialog/edit-book-dialog.component';
+import { BookChartComponent } from './components/book-chart/book-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { EditBookDialogComponent } from './components/edit-book-dialog/edit-book
     DateFilterComponent,
     AddBookDialogComponent,
     EditBookDialogComponent,
+    BookChartComponent,
   ],
   imports: [
     BrowserModule,

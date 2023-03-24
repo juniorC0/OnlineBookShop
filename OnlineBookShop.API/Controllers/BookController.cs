@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineBookShop.Appilcation.App.Dtos;
 using OnlineBookShop.Appilcation.Common.Interfaces;
 
@@ -77,6 +78,14 @@ namespace OnlineBookShop.API.Controllers
             {
                 return BadRequest($"Book with id: {id} is not found");
             }
+        }
+
+        [HttpGet("books-per-year")]
+        public async Task<IActionResult> GetBooksPerYear()
+        {
+            var booksPerYear = await _bookService.GetBooksPerYearAsync();
+
+            return Ok(booksPerYear);
         }
     }
 }

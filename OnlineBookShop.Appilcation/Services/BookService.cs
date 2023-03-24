@@ -76,5 +76,17 @@ namespace OnlineBookShop.Appilcation.Services
 
             await _repository.UpdateAsync(book);
         }
+
+        public async Task<IEnumerable<BookPerYearDto>> GetBooksPerYearAsync()
+        {
+            var books = await _repository.GetAllAsync<Book>();
+
+            var booksPerYear = books
+                .GroupBy(b => b.PublicationDate.Year)
+                .OrderBy(b => b.Key)
+                .Select(b => new BookPerYearDto { Year = b.Key, Count = b.Count() }).ToList();
+
+            return booksPerYear;
+        }
     }
 }
