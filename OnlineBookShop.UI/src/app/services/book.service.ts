@@ -12,4 +12,26 @@ export class BookService {
   getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>('/api/Book');
   }
+
+  addBook(newBook: Book): Observable<Book> {
+    return this.http.post<Book>('/api/Book', newBook);
+  }
+
+  deleteBook(book: Book) {
+    if (book.id != null) {
+      const url = `/api/Book/${book.id}`;
+      return this.http.delete<Book>(url);
+    } else {
+      throw new Error('Book id is null');
+    }
+  }
+
+  updateBook(book: Book) {
+    if (book.id != null) {
+      const url = `/api/Book/${book.id}`;
+      return this.http.put<Book>(url, book);
+    } else {
+      throw new Error('Book id is null');
+    }
+  }
 }

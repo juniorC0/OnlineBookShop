@@ -8,7 +8,7 @@ namespace OnlineBookShop.Appilcation.Common.Interfaces
 
         Task<BookDto> GetBookByIdAsync(int id);
 
-        void AddBookAsync(BookDto bookDto);
+        Task AddBookAsync(BookDto bookDto);
 
         Task DeleteBookAsync(int id);
 

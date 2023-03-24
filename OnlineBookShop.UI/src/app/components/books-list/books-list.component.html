@@ -13,6 +13,10 @@
       ></app-date-filter>
     </div>
 
+    <button mat-raised-button color="primary" (click)="openDialogToAddBook()">
+      Add Book
+    </button>
+
     <mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="index">
         <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
@@ -40,6 +44,22 @@
           >Number of pages</mat-header-cell
         >
         <mat-cell *matCellDef="let book">{{ book.numberOfPages }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let book">
+          <button
+            mat-icon-button
+            color="accent"
+            (click)="openDialogToEditBook(book)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteBook(book)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

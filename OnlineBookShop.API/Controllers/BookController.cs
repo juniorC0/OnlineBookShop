@@ -38,11 +38,11 @@ namespace OnlineBookShop.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBook([FromBody] BookDto bookDto)
+        public async Task<IActionResult> AddBook([FromBody] BookDto bookDto)
         {
             try
             {
-                _bookService.AddBookAsync(bookDto);
+                await _bookService.AddBookAsync(bookDto);
                 return Ok();
             }
             catch (Exception e)

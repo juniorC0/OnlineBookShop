@@ -18,9 +18,21 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { DateFilterComponent } from './components/date-filter/date-filter.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { AddBookDialogComponent } from './components/add-book-dialog/add-book-dialog.component';
+import { EditBookDialogComponent } from './components/edit-book-dialog/edit-book-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, BooksListComponent, BookSearchComponent, DateFilterComponent],
+  declarations: [
+    AppComponent,
+    BooksListComponent,
+    BookSearchComponent,
+    DateFilterComponent,
+    AddBookDialogComponent,
+    EditBookDialogComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -37,6 +49,9 @@ import { DateFilterComponent } from './components/date-filter/date-filter.compon
     MatNativeDateModule,
     MatAutocompleteModule,
     MatSelectModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

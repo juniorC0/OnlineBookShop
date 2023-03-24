@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>{{ "Edit Book" }}</h2>
+<div mat-dialog-content>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Name" formControlName="name" />
+      <mat-error *ngIf="bookForm.controls['name'].hasError('required')">
+        Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Publication Date"
+        formControlName="publicationDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error
+        *ngIf="bookForm.controls['publicationDate'].hasError('required')"
+      >
+        Publication date is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <textarea
+        matInput
+        placeholder="Description"
+        formControlName="description"
+      ></textarea>
+      <mat-error *ngIf="bookForm.controls['description'].hasError('required')">
+        Description is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input
+        type="number"
+        matInput
+        placeholder="Page Count"
+        formControlName="numberOfPages"
+      />
+      <mat-error
+        *ngIf="bookForm.controls['numberOfPages'].hasError('required')"
+      >
+        Page count is required.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <br />
+  <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!bookForm.valid"
+    (click)="onSubmit()"
+  >
+    Save
+  </button>
+</div>

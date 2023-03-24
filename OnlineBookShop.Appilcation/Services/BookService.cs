@@ -39,7 +39,7 @@ namespace OnlineBookShop.Appilcation.Services
             return bookDto;
         }
 
-        public void AddBookAsync(BookDto bookDto)
+        public async Task AddBookAsync(BookDto bookDto)
         {
             var book = new Book
             {
@@ -49,8 +49,8 @@ namespace OnlineBookShop.Appilcation.Services
                 PublicationDate = bookDto.PublicationDate
             };
 
-            _repository.AddAsync(book);
-            _repository.SaveChangesAsync();
+            await _repository.AddAsync(book);
+            await _repository.SaveChangesAsync();
         }
 
         public async Task DeleteBookAsync(int id)

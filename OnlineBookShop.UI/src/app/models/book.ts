@@ -1,7 +1,7 @@
 export interface Book {
-  id: number;
+  id?: number;
   name: string;
   publicationDate: Date;
   description: string;
-  numberOfPages: number;
+  numberOfPages: number | null;
 }
