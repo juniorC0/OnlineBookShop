@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/cdk": "^15.2.4",
+    "ng2-charts": "^4.1.1"
+  }
+}
